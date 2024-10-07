@@ -6,6 +6,8 @@
 	let precision = 200;
 	$: binary = decimalToBinary(real, precision);
 	$: sequence = binaryToSequence(binary);
+
+	$: oeisSearchLink = 'https://oeis.org/search?q=' + sequence.join('%2C+') + '&go=Search';
 </script>
 
 <main class="flex h-screen w-screen flex-col items-center justify-center gap-8 p-8">
@@ -44,7 +46,14 @@
 	<div
 		class="flex min-h-0 w-full flex-1 flex-col justify-center gap-4 rounded-lg bg-neutral-700 p-4"
 	>
-		<div class="text-2xl font-bold text-white">Sequence</div>
+		<div>
+			<span class="text-2xl font-bold text-white"> Sequence </span>
+			<a
+				href={oeisSearchLink}
+				class="pl-2 text-cyan-300 underline transition-all hover:opacity-80"
+				target="_blank">Search OEIS</a
+			>
+		</div>
 		<code class="w-full flex-1 overflow-auto rounded-lg bg-neutral-700 text-xl">
 			{sequence.join(', ')}
 		</code>
